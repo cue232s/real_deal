@@ -8,8 +8,24 @@
 </head>
 <body>
 <div class="container">
-<%= yield %>
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+	  		<%= content_for :nav_title %>
+		</div>
+	</nav>
+	<%= content_for :nav_runner %>
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: "alert alert-danger" %>
+    <% end -%>
+
+	<%= yield %>
 </div>
+
+<!-- <div id="footer">
+	<div class="container">
+
+	</div>
+</div> -->
 
 </body>
 </html>

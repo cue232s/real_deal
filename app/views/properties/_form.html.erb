@@ -11,11 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
+  <ul class="nav nav-pills nav-stacked">
+    <li class="active">
+      <a href="#">
+        <span class="badge pull-right">42</span>
+        <%= @property.property.address[:street] if @property.zillowId %>
+      </a>
+    </li>
+  </ul>
+
+ 
+
+  <%#= @property.property.images %>
+  <!-- <div class="field">
     <%= f.label :address2 %><br>
     <%= f.text_field :address2 %>
   </div>
@@ -37,5 +45,5 @@
   </div>
   <div class="actions">
     <%= f.submit %>
-  </div>
+  </div> -->
 <% end %>

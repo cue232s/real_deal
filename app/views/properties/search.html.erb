@@ -1,0 +1,17 @@
+<div class="col-xs-12 col-lg-6">
+	<div class="panel panel-primary">
+		<div class="panel-heading text-center">
+			Find a deal on any property
+		</div>
+		<div class="panel-body">
+			<%= form_tag "new", method: "get" do %>
+				<%= label_tag :address, "Address", class: "sr-only" %>
+				<%= text_field_tag :address, nil, placeholder: "Address", class: "col-xs-12" %>
+				<%= label_tag :Zipcode, "Zipcode", class: "sr-only" %>
+				<%= text_field_tag :zipcode, nil, placeholder: "Zipcode", class: "col-xs-12"%>
+				<%= submit_tag(:find) %>
+			<% end %>
+		</div>
+	</div>
+
+</div>

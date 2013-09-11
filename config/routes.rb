@@ -1,5 +1,7 @@
 ReiApp::Application.routes.draw do
-  resources :properties
+  resource :properties do 
+    get "search"
+  end
 
   root to: "home#index"
   # get '/', :to => redirect('/index.html')

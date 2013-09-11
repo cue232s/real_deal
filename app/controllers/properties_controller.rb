@@ -1,6 +1,9 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
 
+
+  def search
+  end
   # GET /properties
   # GET /properties.json
   def index
@@ -14,7 +17,9 @@ class PropertiesController < ApplicationController
 
   # GET /properties/new
   def new
-    @property = Property.new
+    @property = Property.new address: params[:address], zipcode: params[:zipcode]
+    @images = Rubillow::PropertyDetails.updated_property_details({ :zpid => @property.zillowId.to_i }).images
+    flash[:notice] = "Sorry, No Property Found!" unless @property.zillowId
   end
 
   # GET /properties/1/edit

@@ -1,5 +1,5 @@
 class Property < ActiveRecord::Base
-  attr_reader :property, :zillowId
+  attr_reader :property
   has_many :holdDeals
   def initialize(attributes = {})
     super
@@ -16,6 +16,6 @@ class Property < ActiveRecord::Base
 
     @property = Rubillow::PropertyDetails.deep_search_results address: attributes[:address], citystatezip: attributes[:zipcode]
     @address = attributes["address"] if attributes.present? && !attributes["city"].present?
-    @zillowId = @property.zpid if @property
+    self.zillowId = @property.zpid if @property
   end
 end

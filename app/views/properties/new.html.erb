@@ -1,5 +1,49 @@
-<h1>New property</h1>
+<% content_for :nav_title do  %>
+<div class="row">
+	<div class="col-xs-12"><%= link_to @property.address, "#", class: "navbar-brand" %></div>
+</div> 
+<% end %>
+<% content_for :nav_runner do %>
+	<div class="row text-center" id="chooseDealType">
+		<div class="col-xs-6 dealType">Flip Deal</div>
+		<div class="col-xs-6 dealType">Hold Deal</div>
+	</div>
+<% end %>
+<div class="row">
+	<div class='col-xs-12'>
+		<div id="carousel-example-generic" class="carousel slide">
+		  <!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+			</ol>
+			<% @images.each_with_index do |image, index| %>
+				<div class="carousel-inner">
+					<div class="item <%= "active" if index == 0 %>">
+					<%= image_tag image, class: "prop_img" %>					
+					</div>
+				</div>
+			<% end %>
+			<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+				<span class="icon-prev"></span>
+			</a>
+			<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+				<span class="icon-next"></span>
+			</a>
+		</div>
 
-<%= render 'form' %>
 
-<%= link_to 'Back', properties_path %>
+
+
+
+	</div>
+</div>
+<div class="row">
+	<div class='col-xs-12'>
+		<h1>New property</h1>
+		<%= render 'form' %>
+
+		<%= link_to 'Back', properties_path %>
+	</div>
+</div>
