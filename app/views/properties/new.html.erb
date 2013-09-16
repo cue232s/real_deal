@@ -1,7 +1,5 @@
 <% content_for :nav_title do  %>
-<div class="row">
-	<div class="col-xs-12"><%= link_to @property.address, "#", class: "navbar-brand" %></div>
-</div> 
+	<%= link_to @property.address, "#", class: "navbar-brand" %>
 <% end %>
 <% content_for :nav_runner do %>
 	<div class="row text-center" id="chooseDealType">
@@ -10,40 +8,47 @@
 	</div>
 <% end %>
 <div class="row">
-	<div class='col-xs-12'>
-		<div id="carousel-example-generic" class="carousel slide">
-		  <!-- Indicators -->
-			<ol class="carousel-indicators">
-				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-			</ol>
-			<% @images.each_with_index do |image, index| %>
-				<div class="carousel-inner">
-					<div class="item <%= "active" if index == 0 %>">
-					<%= image_tag image, class: "prop_img" %>					
-					</div>
-				</div>
+	<div id="carousel-example-generic" class="carousel slide">
+		<ol class="carousel-indicators">
+			<% @images.each_index do |index| %>
+				<li data-target="#carousel-example-generic" data-slide-to="<%= index %>" class=<%= "active" if index == 0 %>></li>
 			<% end %>
-			<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-				<span class="icon-prev"></span>
-			</a>
-			<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-				<span class="icon-next"></span>
-			</a>
-		</div>
-
-
-
-
-
+		</ol>
+		<% @images.each_with_index do |image, index| %>
+			<div class="carousel-inner">
+				<div class="item<%= " active" if index == 0 %>">
+					<%= image_tag image, class: "prop_img" %>					
+				</div>
+			</div>
+		<% end %>
+		<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+			<span class="icon-prev"></span>
+		</a>
+		<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+			<span class="icon-next"></span>
+		</a>
 	</div>
 </div>
 <div class="row">
 	<div class='col-xs-12'>
-		<h1>New property</h1>
-		<%= render 'form' %>
-
-		<%= link_to 'Back', properties_path %>
-	</div>
+		<h3>Features</h3>
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<%= number_to_currency(@property.property.price.to_i) %> <span class="caret"></span>
+			</button>
+		<hr>
+		<div class='well'>
+		    <div> 
+		      <span class="pull-left"></span>Size:<span class="pull-right"><%= @property.property.finished_square_feet %> sq ft</span>
+		    </div>
+		    <div> 
+		      <span class="pull-left"></span>Beds & Bath:<span class="pull-right"><%= pluralize(@property.property.bedrooms, 'Bed') %>, <%= pluralize(@property.property.bathrooms, 'Bath') %></span>
+		    </div>
+		    <div> 
+		      <span class="pull-left"></span>Type:<span class="pull-right"><%= @property.property.use_code %></span>
+		    </div>
+		</div>
+		<div class='cave new_deal'>
+			<p><a href="#" class="btn btn-lg btn-primary">Cash Flow</a> <a href="#" class="btn btn-lg btn-default pull-right">Buy & Hold</a></p>
+		</div>
+  	</div> 
 </div>

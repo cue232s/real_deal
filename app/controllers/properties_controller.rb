@@ -18,8 +18,11 @@ class PropertiesController < ApplicationController
   # GET /properties/new
   def new
     @property = Property.new address: params[:address], zipcode: params[:zipcode]
-    @images = Rubillow::PropertyDetails.updated_property_details({ :zpid => @property.zillowId.to_i }).images
+    #updated property details
+    @upd = Rubillow::PropertyDetails.updated_property_details({ :zpid => @property.zillowId.to_i })
+    @images = @upd.images
     flash[:notice] = "Sorry, No Property Found!" unless @property.zillowId
+    # render text: @upd.as_json
   end
 
   # GET /properties/1/edit
