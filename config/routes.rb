@@ -1,4 +1,6 @@
 ReiApp::Application.routes.draw do
+  resources :hold_deals
+
   resource :properties do 
     get "search"
   end
