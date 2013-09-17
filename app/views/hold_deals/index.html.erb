@@ -1,0 +1,25 @@
+<h1>Listing hold_deals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hold_deals.each do |hold_deal| %>
+      <tr>
+        <td><%= link_to 'Show', hold_deal %></td>
+        <td><%= link_to 'Edit', edit_hold_deal_path(hold_deal) %></td>
+        <td><%= link_to 'Destroy', hold_deal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hold deal', new_hold_deal_path %>
