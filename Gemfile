@@ -50,5 +50,10 @@ gem 'google_drive'
 gem "rubillow", "~> 0.0.8"
 gem 'less-rails-bootstrap'
 gem 'angularjs-rails'
-gem 'better_errors', '0.9.0'
+gem "better_errors", "~> 1.0.1"
 gem 'binding_of_caller', '0.7.2'
+gem "rspec-rails", "~> 2.14.0"
+gem "guard-rspec", "~> 3.0.3"
+gem "factory_girl_rails", "~> 4.2.1"
+gem 'terminal-notifier-guard', '1.5.3'
+gem 'capybara', '2.1.0'

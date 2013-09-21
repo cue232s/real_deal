@@ -2,9 +2,9 @@ class Property < ActiveRecord::Base
   attr_reader :property
   has_many :hold_deals
   after_find :get_property
-  def initialize(attributes = {address: "5381 Pershing Ave, apt 203", zipcode: "63112"})
+  def initialize(attributes = {})
     super
-    puts attributes[:address].nil?
+    # puts attributes[:address].nil?
 
     if attributes[:address].nil?
       raise ArgumentError, "The address options is required" 
@@ -13,9 +13,11 @@ class Property < ActiveRecord::Base
     if attributes[:zipcode].nil?
       raise ArgumentError, "The zipcode options is required" 
     end
-    p @property
+    # p @property
 
     get_property(attributes)
+
+    # raise RuntimeError, "There is no property found for this address!" unless @property.zpid
 
     @address = attributes["address"] if attributes.present? && !attributes["city"].present?
     self.zillowId = @property.zpid if @property
