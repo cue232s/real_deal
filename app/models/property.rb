@@ -1,7 +1,7 @@
 class Property < ActiveRecord::Base
   attr_reader :property
   has_many :hold_deals
-  after_find :get_property
+  after_find :set_property
   def initialize(attributes = {})
     super
     # puts attributes[:address].nil?
@@ -15,16 +15,23 @@ class Property < ActiveRecord::Base
     end
     # p @property
 
-    get_property(attributes)
-
+    set_property()
     # raise RuntimeError, "There is no property found for this address!" unless @property.zpid
 
     @address = attributes["address"] if attributes.present? && !attributes["city"].present?
-    self.zillowId = @property.zpid if @property
+    begin
+      self.zillowId = @property.zpid if @property  
+    rescue NoMethodError => e
+      self.zillowId = "No Address Found on Zillow"      
+    end
   end
 
   def get_property(attributes = self)
         # can save Zillow Data!
-        @property = Rubillow::PropertyDetails.deep_search_results address: attributes[:address], citystatezip: attributes[:zipcode]
+        Rubillow::PropertyDetails.deep_search_results address: attributes[:address], citystatezip: attributes[:zipcode]
+  end
+
+  def set_property()
+    @property ||= get_property(self)
   end
 end

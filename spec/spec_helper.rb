@@ -40,4 +40,8 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  def get_xml(file)
+    File.open(File.expand_path("../xml/" + file, __FILE__)).read
+  end
 end
