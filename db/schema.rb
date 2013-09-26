@@ -15,12 +15,12 @@ ActiveRecord::Schema.define(version: 20130917025548) do
 
   create_table "hold_deals", force: true do |t|
     t.integer  "property_id"
-    t.decimal  "asking_price",            precision: 8, scale: 2
-    t.decimal  "aslking_price_per_sq_ft", precision: 8, scale: 2
+    t.decimal  "asking_price",           precision: 8, scale: 2
+    t.decimal  "asking_price_per_sq_ft", precision: 8, scale: 2
     t.float    "asking_price_discount"
-    t.decimal  "rehab_cost_per_sq_ft",    precision: 8, scale: 2
-    t.decimal  "est_arv",                 precision: 8, scale: 2
-    t.decimal  "comp_avg_per_sq_ft",      precision: 8, scale: 2
+    t.decimal  "rehab_cost_per_sq_ft",   precision: 8, scale: 2
+    t.decimal  "est_arv",                precision: 8, scale: 2
+    t.decimal  "comp_avg_per_sq_ft",     precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -12,13 +12,13 @@ class CreateHoldDeals < ActiveRecord::Migration
         t.float :asking_price_discount 
         # @rehab_cost
           t.decimal :rehab_cost_per_sq_ft, :precision => 8, :scale => 2
-          #t.property_sq_ft
+          #property.property_sq_ft
 
 
       #Property Value / Post Rehab
       t.decimal :est_arv, :precision => 8, :scale => 2
         t.decimal :comp_avg_per_sq_ft, :precision => 8, :scale => 2
-        #t.property.property.finished_square_feet
+        #property.property.finished_square_feet
 
       # #Exit
       # #t.cash_out

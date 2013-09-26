@@ -4,7 +4,7 @@ class HoldDeal < ActiveRecord::Base
   def initialize(options={})
     super
     self.property_id = self.property.id if self.property
-    raise ArgumentError, "This Deal Must be have a :property_id" unless options[:property_id] || self.property_id
+    raise ArgumentError, ":property_id required" unless options[:property_id] || self.property_id
     self.asking_price = self.property.property.price
     set_assumptions
 
@@ -30,7 +30,9 @@ class HoldDeal < ActiveRecord::Base
 
   def calculate_arv
     get_comps_avg
-    self.est_arv = self.property.property.finished_square_feet.to_i * self.comp_avg_per_sq_ft
+    p self.property_sq_ft.to_f
+    p self.comp_avg_per_sq_ft.to_f
+    self.est_arv = self.property_sq_ft.to_f * self.comp_avg_per_sq_ft.to_f
   end
 
   #most serrious method.. profits live and die by the 
@@ -38,13 +40,17 @@ class HoldDeal < ActiveRecord::Base
   def get_comps_avg
     # p self.property.zillowId
     comps ||= Rubillow::PropertyDetails.deep_comps( {zpid: self.property.zillowId, count: 3}  )
-    p comps.principal.zpid
-    comp_sum = 0
+    # p comps.principal.zpid
+    # p comps.comparables.size
+    comp_list = []
     comps.comparables.each do |c|
-      comp_sum += c.last.price.to_f/c.last.finished_square_feet.to_i 
+      comp_list << (c.last.price.to_f/c.last.finished_square_feet.to_f) 
+      # p c.last.price
+      # p "-" + c.last.finished_square_feet
     end unless !comps.success?
     #take the sum of 
-    self.comp_avg_per_sq_ft = comp_sum/comps.comparables.size.to_i
+    self.comp_avg_per_sq_ft = comp_list.inject{ |sum, el| sum + el }.to_f / comp_list.size
+    # p self.comp_avg_per_sq_ft.to_f
   end
 
   def set_assumptions(assump={})

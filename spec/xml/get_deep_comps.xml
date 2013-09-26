@@ -204,7 +204,7 @@
             </region>
           </localRealEstate>
         </comp>
-        <comp score="0.0906162">
+<!--         <comp score="0.0906162">
           <zpid>48689869</zpid>
           <links>
             <homedetails>http://www.zillow.com/homedetails/1606-Nob-Hill-Ave-N-Seattle-WA-98109/48689869_zpid/</homedetails>
@@ -299,7 +299,7 @@
               </links>
             </region>
           </localRealEstate>
-        </comp>
+        </comp> -->
       </comparables>
     </properties>
   </response>
