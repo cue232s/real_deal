@@ -11,7 +11,9 @@ describe HoldDeal do
   its(:property_address) {should == home.address}
 
   it "should calculate its total investment" do
-    deal.total_investment.should eq (deal.property.property.finished_square_feet.to_i * 30 + deal.asking_price).to_i
+    tot_inv = deal.asking_price - (deal.asking_price.to_f * deal.asking_price_discount.to_f)
+    tot_inv += deal.rehab_cost.to_f
+    deal.total_investment.should eq tot_inv
   end
 
 
@@ -33,6 +35,10 @@ describe HoldDeal do
     Rubillow::PropertyDetails.stub(:deep_comps) {Rubillow::Models::DeepComps.new(get_xml('get_deep_comps.xml'))}
     deal.calculate_arv.to_f.should eq est_erv
   end
+
+  its(:asking_price) { should eq home.property.price.to_i }
+  its(:asking_price_discount) { should eq 0.30 }
+  its(:rehab_cost_per_sq_ft) { should eq 30}
 
   # it{should eq 1}
   # it "should have a Zillow deep search_result instance" do
