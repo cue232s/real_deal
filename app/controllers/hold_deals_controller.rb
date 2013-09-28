@@ -14,7 +14,9 @@ class HoldDealsController < ApplicationController
 
   # GET /hold_deals/new
   def new
-    @hold_deal = HoldDeal.new
+    #save the property first
+    @property = Property.find_or_create_by(address: params[:address], zipcode: params[:zipcode])
+    @hold_deal = @property.hold_deals.create
   end
 
   # GET /hold_deals/1/edit

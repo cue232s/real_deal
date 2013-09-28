@@ -18,7 +18,7 @@
 			<% @images.each_with_index do |image, index| %>
 				<div class="carousel-inner">
 					<div class="item<%= " active" if index == 0 %>">
-						<%= image_tag image, class: "prop_img" %>					
+						<%= image_tag image, class: "prop_img" %>
 					</div>
 				</div>
 			<% end %>
@@ -36,21 +36,24 @@
 		<h3>Features</h3>
 		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 			<%= number_to_currency(@property.property.price.to_i) %> <span class="caret"></span>
-			</button>
+		</button>
 		<hr>
 		<div class='well'>
-		    <div> 
+		    <div>
 		      <span class="pull-left"></span>Size:<span class="pull-right"><%= @property.property.finished_square_feet %> sq ft</span>
 		    </div>
-		    <div> 
+		    <div>
 		      <span class="pull-left"></span>Beds & Bath:<span class="pull-right"><%= pluralize(@property.property.bedrooms, 'Bed') %>, <%= pluralize(@property.property.bathrooms, 'Bath') %></span>
 		    </div>
-		    <div> 
+		    <div>
 		      <span class="pull-left"></span>Type:<span class="pull-right"><%= @property.property.use_code %></span>
 		    </div>
 		</div>
 		<div class='cave new_deal'>
-			<p><a href="#" class="btn btn-lg btn-primary">Buy & Sell</a> <a href="#" class="btn btn-lg btn-default pull-right">Buy & Hold</a></p>
+			<p>
+        <%= link_to "Buy & Sell", "#", class: "btn btn-lg btn-primary pull-left" %>
+        <%= link_to "Buy & Hold", new_hold_deal_path(address: @property.address, zipcode: @property.zipcode), class: "btn btn-lg btn-default pull-right" %>
+      </p>
 		</div>
-  	</div> 
+  </div>
 </div>

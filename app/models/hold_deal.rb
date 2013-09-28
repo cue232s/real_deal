@@ -4,7 +4,7 @@ class HoldDeal < ActiveRecord::Base
   def initialize(options={})
     super
     self.property_id = self.property.id if self.property
-    raise ArgumentError, ":property_id required" unless options[:property_id] || self.property_id
+    raise ArgumentError, ":property_id required" unless options[:property_id] || self.property.id
     self.asking_price = self.property.property.price
     set_assumptions
 

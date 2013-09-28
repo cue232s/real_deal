@@ -1,15 +1,16 @@
 class CreateHoldDeals < ActiveRecord::Migration
   def change
     create_table :hold_deals do |t|
-      t.integer :property_id 
+      t.integer :property_id
 
       #Investment (purchase/rehab)
       #p1
-      #t.total_investment 
+      #t.total_investment
         #s1
-        t.decimal :asking_price, :precision => 8, :scale => 2
-        t.decimal :asking_price_per_sq_ft , :precision => 8, :scale => 2
-        t.float :asking_price_discount 
+        # t.decimal :acquisition_price, :precision => 8, :sacale => 2
+          t.decimal :asking_price, :precision => 8, :scale => 2
+          t.decimal :asking_price_per_sq_ft , :precision => 8, :scale => 2
+          t.float :asking_price_discount
         # @rehab_cost
           t.decimal :rehab_cost_per_sq_ft, :precision => 8, :scale => 2
           #property.property_sq_ft
