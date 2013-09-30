@@ -51,19 +51,10 @@
         <div id="collapseOne" class="panel-collapse collapse in">
           <div class="panel-body">
             <div>
-                <span class="pull-left"></span>Rehab Cost:<span class="pull-right"><%= number_to_currency @deal.rehab_cost_per_sq_ft * @deal.property_sq_ft %></span>
-            </div>
-            <div>
                 <span class="pull-left"></span>Acquisition Price:<span class="pull-right"><%= number_to_currency @deal.acquisition_price %></span>
             </div>
             <div>
-                <span class="pull-left"></span>Asking Price:<span class="pull-right"><%= number_to_currency(@deal.asking_price) %></span>
-            </div>
-            <div>
-                <span class="pull-left"></span>Asking Price Discount:<span class="pull-right"><%= number_to_percentage @deal.asking_price_discount * 100 %></span>
-            </div>
-            <div>
-                <span class="pull-left"></span>Rehab Cost:<span class="pull-right"><%= @deal.rehab_cost_per_sq_ft * @deal.property_sq_ft %> sq ft</span>
+                <span class="pull-left"></span>Rehab Cost:<span class="pull-right"><%= number_to_currency @deal.rehab_cost_per_sq_ft * @deal.property_sq_ft %></span>
             </div>
           </div>
         </div>

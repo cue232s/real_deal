@@ -1,11 +1,11 @@
 ReiApp::Application.routes.draw do
   resources :hold_deals
 
-  resource :properties do 
+  resource :properties do
     get "search"
   end
 
-  root to: "home#index"
+  root to: "properties#search"
   # get '/', :to => redirect('/index.html')
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
