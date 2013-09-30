@@ -14,9 +14,13 @@ class HoldDealsController < ApplicationController
 
   # GET /hold_deals/new
   def new
-    #save the property first
+    #find or create the property first
     @property = Property.find_or_create_by(address: params[:address], zipcode: params[:zipcode])
-    @hold_deal = @property.hold_deals.create
+    #then create deal
+    @deal = @property.hold_deals.create
+    @upd = Rubillow::PropertyDetails.updated_property_details({ :zpid => @property.zillowId.to_i })
+    @images = @upd.images
+    flash[:notice] = "Sorry, No Property Found!" unless @property.zillowId
   end
 
   # GET /hold_deals/1/edit

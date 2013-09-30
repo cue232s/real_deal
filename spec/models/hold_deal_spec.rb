@@ -38,13 +38,8 @@ describe HoldDeal do
 
   its(:asking_price) { should eq home.property.price.to_i }
   its(:asking_price_discount) { should eq 0.30 }
-  its(:rehab_cost_per_sq_ft) { should eq 30}
-
-  # it{should eq 1}
-  # it "should have a Zillow deep search_result instance" do
-  #   property = FactoryGirl.create(:property)
-  #   property.property.should be_a Rubillow::Models::DeepSearchResult
-  # end
-
-
+  its(:acquisition_price) {should eq (deal.asking_price - (deal.asking_price * deal.asking_price_discount)).to_f }
+  its(:total_investment) { should eq deal.acquisition_price + deal.rehab_cost }
+  its(:rehab_cost_per_sq_ft) { should eq 30 }
+  its(:rehab_cost) { should eq deal.rehab_cost_per_sq_ft.to_f * deal.property_sq_ft.to_f}
 end

@@ -11,9 +11,12 @@ class HoldDeal < ActiveRecord::Base
   end
 
   def total_investment
-    @total_investment = self.asking_price.to_f - (self.asking_price.to_f * self.asking_price_discount.to_f)
-    @total_investment += self.rehab_cost.to_f
+    @total_investment = acquisition_price + self.rehab_cost.to_f
     @total_investment.to_f
+  end
+
+  def acquisition_price
+    self.asking_price.to_f - (self.asking_price.to_f * self.asking_price_discount)
   end
 
   def property_address
@@ -25,13 +28,13 @@ class HoldDeal < ActiveRecord::Base
   end
 
   def property_sq_ft
-    self.property.property.finished_square_feet
+    self.property.property.finished_square_feet.to_f
   end
 
   def calculate_arv
     get_comps_avg
-    p self.property_sq_ft.to_f
-    p self.comp_avg_per_sq_ft.to_f
+    # p self.property_sq_ft.to_f
+    # p self.comp_avg_per_sq_ft.to_f
     self.est_arv = self.property_sq_ft.to_f * self.comp_avg_per_sq_ft.to_f
   end
 
