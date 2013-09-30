@@ -4,7 +4,7 @@
 			Find a deal on any property
 		</div>
 		<div class="panel-body">
-			<%= form_tag "new", method: "get" do %>
+			<%= form_tag new_properties_path, method: "get" do %>
 				<%= label_tag :address, "Address", class: "sr-only" %>
 				<%= text_field_tag :address, nil, placeholder: "Address", class: "col-xs-12" %>
 				<%= label_tag :Zipcode, "Zipcode", class: "sr-only" %>
