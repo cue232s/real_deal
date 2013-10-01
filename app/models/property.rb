@@ -36,10 +36,14 @@ class Property < ActiveRecord::Base
   def set_property_and_variables()
     @property ||= get_property(self)
     # if @property is set with useful information
-    if @property
-      self.address = @property.address[:street] if @property.address[:street]
-      self.zipcode = @property.address[:zipcode] if @property.address[:zipcode]
-      self.state = @property.address[:state] if @property.address[:state]
+    begin
+      if @property
+        self.address = @property.address[:street] if @property.address[:street]
+        self.zipcode = @property.address[:zipcode] if @property.address[:zipcode]
+        self.state = @property.address[:state] if @property.address[:state]
+      end
+    rescue NoMethodError => e
+      
     end
   end
 

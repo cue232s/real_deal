@@ -17,14 +17,14 @@ module Rubillow
                 :total => @parser.xpath('//pageViewCount/total').first.text
               }
               puts @parser.xpath
-              # @price = @parser.xpath('//price').first.text
+              @price = @parser.xpath('//pageViewCount').first.text
               # @neighborhood = @parser.xpath('//neighborhood').first.text
               # @school_district = @parser.xpath('//schoolDistrict').first.text
               # @elementary_school = @parser.xpath('//elementarySchool').first.text
               # @middle_school = @parser.xpath('//middleSchool').first.text
-              # @home_description = @parser.xpath('//homeDescription').first.text
+              @home_description = @parser.xpath('//homeDescription').first.text
               
-              # @posting = {}
+              @posting = {}
               @parser.xpath('//posting').children.each do |elm|
                 @posting[underscore(elm.name).to_sym] = elm.text
               end
