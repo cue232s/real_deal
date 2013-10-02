@@ -17,12 +17,12 @@ module Rubillow
                 :total => @parser.xpath('//pageViewCount/total').first.text
               }
               puts @parser.xpath
-              @price = @parser.xpath('//pageViewCount').first.text
+              @price = @parser.xpath('//price').first ? @parser.xpath('//price').first.text : @parser.xpath('//zestimate/amount') || { message: "No price available on this", code: -1}
               # @neighborhood = @parser.xpath('//neighborhood').first.text
               # @school_district = @parser.xpath('//schoolDistrict').first.text
               # @elementary_school = @parser.xpath('//elementarySchool').first.text
               # @middle_school = @parser.xpath('//middleSchool').first.text
-              @home_description = @parser.xpath('//homeDescription').first.text
+              # @home_description = @parser.xpath('//homeDescription').first.text
               
               @posting = {}
               @parser.xpath('//posting').children.each do |elm|
