@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:cue232s/rubillow.git
-  revision: b06705eb40dab32fae1d4b086dd1fc7717eb292a
+  revision: 2d4595c7fbf133bd216f32ce81fe40d6699e4731
   specs:
     rubillow (0.0.8)
       nokogiri (~> 1.5.0)
@@ -34,7 +34,7 @@ GEM
       tzinfo (~> 0.3.37)
     angularjs-rails (1.0.8)
     arel (4.0.0)
-    atomic (1.1.13)
+    atomic (1.1.14)
     better_errors (1.0.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -59,7 +59,7 @@ GEM
     debug_inspector (0.0.2)
     diff-lcs (1.2.4)
     erubis (2.7.0)
-    execjs (2.0.1)
+    execjs (2.0.2)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.2.1)
@@ -93,13 +93,13 @@ GEM
     json (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
-    less (2.3.3)
-      commonjs (~> 0.2.6)
-    less-rails (2.3.3)
+    less (2.4.0)
+      commonjs (~> 0.2.7)
+    less-rails (2.4.2)
       actionpack (>= 3.1)
-      less (~> 2.3.1)
-    less-rails-bootstrap (3.0.2)
-      less-rails (~> 2.3.1)
+      less (~> 2.4.0)
+    less-rails-bootstrap (3.0.3)
+      less-rails (~> 2.4.2)
     libv8 (3.16.14.3)
     listen (1.3.1)
       rb-fsevent (>= 0.9.3)
@@ -159,7 +159,7 @@ GEM
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
     rspec-core (2.14.5)
-    rspec-expectations (2.14.2)
+    rspec-expectations (2.14.3)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.14.3)
     rspec-rails (2.14.0)
@@ -188,7 +188,7 @@ GEM
       libv8 (~> 3.16.14.0)
       ref
     thor (0.18.1)
-    thread_safe (0.1.2)
+    thread_safe (0.1.3)
       atomic
     tilt (1.4.1)
     treetop (1.4.15)

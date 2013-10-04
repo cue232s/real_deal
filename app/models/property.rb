@@ -1,5 +1,5 @@
 class Property < ActiveRecord::Base
-  attr_reader :property
+  attr_reader :property, :updated_property_details
   has_many :hold_deals
   after_find :set_property_and_variables
   def initialize(attributes = {})
@@ -24,6 +24,7 @@ class Property < ActiveRecord::Base
     rescue NoMethodError => e
       self.zillowId = "No Address Found on Zillow"
     end
+
   end
 
 
@@ -33,8 +34,13 @@ class Property < ActiveRecord::Base
     Rubillow::PropertyDetails.deep_search_results address: attributes[:address], citystatezip: attributes[:zipcode]
   end
 
+  def get_updated_property_details(zpid)
+    Rubillow::PropertyDetails.updated_property_details zpid: zpid
+  end
+
   def set_property_and_variables()
-    @property ||= get_property(self)
+    @property ||= get_property
+    @updated_property_details ||= get_updated_property_details(@property.zpid)
     # if @property is set with useful information
     begin
       if @property

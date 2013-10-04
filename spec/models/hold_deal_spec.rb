@@ -8,6 +8,13 @@ describe HoldDeal do
   let(:home) {FactoryGirl.create(:property)}
   subject(:deal) { home.hold_deals.create  }
 
+
+  its(:asking_price) { should eq home.property.price.to_i }
+  its(:asking_price_discount) { should eq 0.30 }
+  its(:acquisition_price) {should eq (deal.asking_price - (deal.asking_price * deal.asking_price_discount)).to_f }
+  its(:total_investment) { should eq deal.acquisition_price + deal.rehab_cost }
+  its(:rehab_cost_per_sq_ft) { should eq 30 }
+  its(:rehab_cost) { should eq deal.rehab_cost_per_sq_ft.to_f * deal.property_sq_ft.to_f}
   its(:property_address) {should == home.address}
 
   it "should calculate its total investment" do
@@ -36,10 +43,5 @@ describe HoldDeal do
     deal.calculate_arv.to_f.should eq est_erv
   end
 
-  its(:asking_price) { should eq home.property.price.to_i }
-  its(:asking_price_discount) { should eq 0.30 }
-  its(:acquisition_price) {should eq (deal.asking_price - (deal.asking_price * deal.asking_price_discount)).to_f }
-  its(:total_investment) { should eq deal.acquisition_price + deal.rehab_cost }
-  its(:rehab_cost_per_sq_ft) { should eq 30 }
-  its(:rehab_cost) { should eq deal.rehab_cost_per_sq_ft.to_f * deal.property_sq_ft.to_f}
+
 end
