@@ -1,3 +1,10 @@
+GIT
+  remote: git@github.com:cue232s/rubillow.git
+  revision: b06705eb40dab32fae1d4b086dd1fc7717eb292a
+  specs:
+    rubillow (0.0.8)
+      nokogiri (~> 1.5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -162,8 +169,6 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    rubillow (0.0.8)
-      nokogiri (~> 1.5.0)
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
@@ -216,7 +221,7 @@ DEPENDENCIES
   less-rails-bootstrap
   rails (= 4.0.0.rc1)
   rspec-rails (~> 2.14.0)
-  rubillow (~> 0.0.8)
+  rubillow!
   sdoc
   sqlite3
   terminal-notifier-guard (= 1.5.3)

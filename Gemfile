@@ -47,7 +47,7 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'google_drive'
-gem "rubillow", "~> 0.0.8"
+gem "rubillow", git: 'git@github.com:cue232s/rubillow.git'
 gem 'less-rails-bootstrap'
 gem 'angularjs-rails'
 gem "better_errors", "~> 1.0.1"
