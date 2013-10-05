@@ -3,8 +3,11 @@ require 'spec_helper'
 
 describe HoldDeal do
   before(:each) do
-    Property.any_instance.stub(:get_property){ Rubillow::Models::DeepSearchResult.new(get_xml('get_deep_search_results.xml')) }
+    Property.any_instance.stub(:get_property){Rubillow::Models::DeepSearchResult.new(get_xml('get_deep_search_results.xml'))}
+    Rubillow::PropertyDetails.stub(:deep_comps) {Rubillow::Models::DeepComps.new(get_xml('get_deep_comps.xml'))}
+    Property.any_instance.stub(:get_updated_property_details){ Rubillow::Models::UpdatedPropertyDetails.new(get_xml('get_updated_property_details.xml'))}
   end
+  
   let(:home) {FactoryGirl.create(:property)}
   subject(:deal) { home.hold_deals.create  }
 
@@ -30,18 +33,12 @@ describe HoldDeal do
 
   it "should calculate an after repair value" do
     sqft_list = []
-    comp_list = [{sqft: 2600 , price: 584400}, {sqft: 1237, price: 301500}, {sqft: 2000 , price: 735300}]#list of 3 comparable properties
+    comp_list = [{sqft: 2600 , price: 584400}, {sqft: 1237, price: 301500}, {sqft: 2000 , price: 735300}]#list of 3 comparable 
     comp_list.each do |comp|
       sqft_list << (comp[:price].to_f / comp[:sqft].to_f)
-      #note the .to_f
-      # p "+" + comp[:price].to_s
-      # p "++" + comp[:sqft].to_s
     end
     arv = sqft_list.inject{ |sum, el| sum + el }.to_f / sqft_list.size #the avg comparable cost per sqft
     est_erv = arv * home.property.finished_square_feet.to_f
-    Rubillow::PropertyDetails.stub(:deep_comps) {Rubillow::Models::DeepComps.new(get_xml('get_deep_comps.xml'))}
     deal.calculate_arv.to_f.should eq est_erv
   end
-
-
 end
