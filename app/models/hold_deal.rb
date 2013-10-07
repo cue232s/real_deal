@@ -5,9 +5,24 @@ class HoldDeal < ActiveRecord::Base
     super
     self.property_id = self.property.id if self.property
     raise ArgumentError, ":property_id required" unless options[:property_id] || self.property.id
-    self.asking_price = self.property.property.price
+    set_asking_price
     set_assumptions
 
+  end
+
+  def set_asking_price
+    upd = self.property.updated_property_details
+    if upd.code == 0
+      if upd.price.code == 0
+        self.asking_price = upd.price.price.to_i
+      elsif upd.price.code == 1
+        self.asking_price == self.property.property.price || upd.price.price
+      else
+        self.asking_price = self.property.property.price
+      end
+    else
+      self.asking_price = self.property.property.price
+    end
   end
 
   def total_investment
