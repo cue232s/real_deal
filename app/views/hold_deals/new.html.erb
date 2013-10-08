@@ -1,5 +1,5 @@
 <% content_for :nav_title do  %>
-	Hold Deal For <%= link_to @property.address, "#", class: "navbar-brand" %>
+	<%= link_to @property.address, "#", class: "navbar-brand" %>
 <% end %>
 <% content_for :nav_runner do %>
 	<div class="row text-center" id="chooseDealType">
@@ -33,33 +33,41 @@
 <% end %>
 <div class="row">
 	<div class='col-xs-12'>
-		<h3>Features</h3>
-		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-			<%= number_to_currency(@property.property.price.to_i) %> <span class="caret"></span>
-			</button>
+		<small>Price</small>
+		<div class="btn-group">
+			<button type="button" class="btn btn-default dropdown-toggle <%= "alert-success" if @property.updated_property_details.price && @property.updated_property_details.price.code == 0 %>" data-toggle="dropdown">
+				<%= number_to_currency(@property.property.price.to_i) %> <span class="caret"></span>
+				</button>
+			<ul class="dropdown-menu">
+				<li><input></li>
+				<li>Somthing else</li>
+			</ul>
+		</div>
+		<!-- if there is an updated_property_details show the price in green -->
 		<hr>
 
-    <div class="panel-group" id="accordion">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-              Total Required Investment <span class="pull-right"><%= number_to_currency(@deal.total_investment.to_f) %>
-            </a>
-          </h4>
-        </div>
-        <div id="collapseOne" class="panel-collapse collapse in">
-          <div class="panel-body">
-            <div>
-                <span class="pull-left"></span>Acquisition Price:<span class="pull-right"><%= number_to_currency @deal.acquisition_price %></span>
-            </div>
-            <div>
-                <span class="pull-left"></span>Rehab Cost:<span class="pull-right"><%= number_to_currency @deal.rehab_cost_per_sq_ft * @deal.property_sq_ft %></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+		<div class="alert alert-success"><%= @property.updated_property_details.message %><%= @property.updated_property_details.price.code %></div>
+	    <div class="panel-group" id="accordion">
+	      <div class="panel panel-default">
+	        <div class="panel-heading">
+	          <h4 class="panel-title">
+	            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+	              Total Required Investment <span class="pull-right"><%= number_to_currency(@deal.total_investment.to_f) %>
+	            </a>
+	          </h4>
+	        </div>
+	        <div id="collapseOne" class="panel-collapse collapse in">
+	          <div class="panel-body">
+	            <div>
+	                <span class="pull-left"></span>Acquisition Price:<span class="pull-right"><%= number_to_currency @deal.acquisition_price %></span>
+	            </div>
+	            <div>
+	                <span class="pull-left"></span>Rehab Cost:<span class="pull-right"><%= number_to_currency @deal.rehab_cost_per_sq_ft * @deal.property_sq_ft %></span>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
 
   		<div class='cave new_deal'>
   			<p><%= link_to "buy and Buy", "#", class: "btn btn-lg btn-primary"   %><%= link_to "Sell & Sell", "#", class: "btn btn-lg btn-default pull-right" %></p>
