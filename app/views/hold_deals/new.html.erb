@@ -86,8 +86,7 @@
   		</div>
   	</div>
    	<div class="popup">
-		<div class="panel panel-default" style="
-    margin-bottom: 1px;">
+		<div class="panel panel-default" style="margin-bottom: 1px;">
 			<div class="panel-heading">Panel heading<button type="button" class="close" aria-hidden="true">&times;</button></div>
 			
 		  	<div class="panel-body">
@@ -97,7 +96,7 @@
 	</div>
 </div>
 <script>
-	$(document).on('mouseenter', '.popoverz', function(){
+	$(document).on('click', '.popoverz', function(){
 	    $this = $(this);
 	    baseTop = $this.css('top');
 	    left = $this.offset().left;
@@ -111,7 +110,7 @@
 	    // theBox.css('left', myCenter - theBox.outerWidth() / 2);
 	    // theBox.css('left', $this.outerWidth());
 	    
-	}).on('mouseout', '.popoverz', function() {
+	}).on('click', '.close', function() {
 	    theBox = $('.popup');
 	    theBox.css('display', 'none');
 	});
