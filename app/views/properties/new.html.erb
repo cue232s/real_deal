@@ -49,9 +49,30 @@
 		      <span class="pull-left"></span>Type:<span class="pull-right"><%= @property.property.use_code %></span>
 		    </div>
 		</div>
+		<table class="table table-striped">
+							<tbody>
+							<tr>
+								<td>Minimum</td>
+								<td>
+									<div class="sliderOverlay">
+										<div class="slider sliderMin sliderGreen ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header ui-slider-range-min" style="width: 25.608011444921313%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 25.608011444921313%;"></a></div>
+									</div>
+									<div class="field_notice">Min: <span class="must sliderMinLabel">$180</span></div>
+								</td>
+							</tr>							<tr>
+								<td>Minimum</td>
+								<td>
+									<div class="sliderOverlay">
+										<div class="slider sliderMin sliderGreen ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header ui-slider-range-min" style="width: 25.608011444921313%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 25.608011444921313%;"></a></div>
+									</div>
+									<div class="field_notice">Min: <span class="must sliderMinLabel">$180</span></div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 		<div class='cave new_deal'>
 			<p>
-        <%= link_to "Buy & Sell", "#", class: "btn btn-lg btn-primary" %>
+        <%= link_to "Buy & Sell", "#", class: "btn btn-lg btn-primary pull-left" %>
         <%= link_to "Buy & Hold", new_hold_deal_path(address: @property.address, zipcode: @property.zipcode), class: "btn btn-lg btn-default pull-right" %>
       </p>
 		</div>
