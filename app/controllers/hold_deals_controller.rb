@@ -57,6 +57,12 @@ class HoldDealsController < ApplicationController
     end
   end
 
+  def rehab_details_modal
+    @sliders = params[:sliders].split(',')
+    # return render text: @sliders
+    render layout: false
+  end
+  
   # DELETE /hold_deals/1
   # DELETE /hold_deals/1.json
   def destroy

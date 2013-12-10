@@ -49,7 +49,6 @@
 			<div class="alert alert-success"><%= @property.updated_property_details.message %><%= @property.updated_property_details.price.code %></div>
 		<% elsif @property.updated_property_details.code == 501 %>
 			<div class="alert alert-warning"><%= @property.updated_property_details.message %></div>
-
 		<% end %>
 	    <div class="panel-group" id="accordion">
 	      <div class="panel panel-default">
@@ -68,19 +67,17 @@
 	            <div>
 	                <div >
 		                <div class="pull-left">
-		                	Rehab Cost:
+		                	Rehab Cost: 
 		                </div>
 		                <div class="pull-right">
 	                		<%= link_to(number_to_currency(@deal.rehab_cost), rehab_details_modal_path(sliders: 'rehab_cost_per_sqft'), :"data-toggle" => "modal", :"data-target" => "#myModal", class: "btn btn-primary btn-xs popoverz") %>
 		                </div>
 	                </div>
-	            	<div class="noUiSlider"></div>
 	            </div>
 	          </div>
 	        </div>
 	      </div>
 	    </div>
-
   		<div class='cave new_deal'>
   			<p><%= link_to "buy and Buy", "#", class: "btn btn-lg btn-primary"   %><%= link_to "Sell & Sell", "#", class: "btn btn-lg btn-default pull-right" %></p>
   		</div>
@@ -90,7 +87,13 @@
 			<div class="panel-heading">Panel heading<button type="button" class="close" aria-hidden="true">&times;</button></div>
 			
 		  	<div class="panel-body">
-		    	Basic panel example
+		    	<label>Some Data</label>
+		    	<div class="row">
+		    		<div class=""></div>
+					<div class="col-md-8"><div class="noUiSlider"></div></div>
+					<div class="col-md-4"><input type="text" class="form-control data-input" placeholder=".col-lg-2"></div>
+		    	</div>
+				</div>
 		  	</div>
 		</div>  	
 	</div>
@@ -98,7 +101,7 @@
 <script>
 	$(document).on('click', '.popoverz', function(){
 	    $this = $(this);
-	    baseTop = $this.css('top');
+	    baseTop = $this.offset().top;
 	    left = $this.offset().left;
 	    // right = $this.offset().right;
 	    myCenter = $this.outerWidth(true)/2 + left;
@@ -106,7 +109,7 @@
 
 	    theBox = $('.popup');
 	    theBox.css('display', 'block');
-	    theBox.css('top', ($this.position().top - theBox.height()-5));
+	    theBox.offset({top: (baseTop - theBox.outerHeight()-5)});
 	    // theBox.css('left', myCenter - theBox.outerWidth() / 2);
 	    // theBox.css('left', $this.outerWidth());
 	    
@@ -115,4 +118,27 @@
 	    theBox.css('display', 'none');
 	});
 
+	var slider = $('.noUiSlider');
+
+	slider.noUiSlider({
+		 range: [0,100]
+		,start: 80
+		,handles: 1
+		,serialization: {
+		 resolution: 1
+		,to: $('.data-input')
+	}
+	});
+
+	$('.data-input').keydown(function( e ) {
+
+		var value = parseInt( slider.val() );
+		
+		switch ( e.which ) {
+			case 38: slider.val( value + 1 );
+				break;
+			case 40: slider.val( value - 1 );
+				break;
+		}
+	});
 </script>

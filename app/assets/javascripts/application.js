@@ -16,5 +16,6 @@
 //= require angular
 //= require angular-resource
 //= require twitter/bootstrap
+//= require sliders/jquery.nouislider.js
 //= require_tree .
 

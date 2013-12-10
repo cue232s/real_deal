@@ -1,9 +1,12 @@
 ReiApp::Application.routes.draw do
+  get "static/dealView"
   resources :hold_deals
 
   resource :properties do
     get "search"
   end
+
+  get '/rehab-details' => 'hold_deals#rehab_details_modal', as: :rehab_details_modal
 
   root to: "properties#search"
   # get '/', :to => redirect('/index.html')

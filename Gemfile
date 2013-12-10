@@ -57,3 +57,4 @@ gem "guard-rspec", "~> 3.0.3"
 gem "factory_girl_rails", "~> 4.2.1"
 gem 'terminal-notifier-guard', '1.5.3'
 gem 'capybara', '2.1.0'
+gem "faker", "~> 1.1.2"
